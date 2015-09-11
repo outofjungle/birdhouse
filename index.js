@@ -31,16 +31,15 @@ var statsChain = sites.reduce(function(chain, site) {
         return getSiteStats(site)
         .then(function (stats) {
             siteStats[site] = stats;
-        }).
-        then(function () {
+        })
+        .then(function () {
             console.info( site + ' stats fetched. waiting for ' + pause/1000 + ' sec.');
         })
         .delay(pause);
     });
 }, Promise.resolve());
 
-statsChain
-.then(function () {
+statsChain.then(function () {
     yaml = YAML.stringify(siteStats, 4);
     console.log(yaml);
 })
