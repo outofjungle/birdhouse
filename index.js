@@ -2,7 +2,7 @@ var Promise = require('bluebird');
 var request = Promise.promisifyAll(require('request'));
 var YAML = require('yamljs');
 
-var getSiteLikes = function(site) {
+var getSiteStats = function(site) {
   var url = 'https://graph.facebook.com/fql?q=SELECT%20url,' +
         '%20normalized_url,%20share_count,%20like_count,' +
         '%20comment_count,%20total_count,commentsbox_count,' +
@@ -25,10 +25,10 @@ var sites = [
   't.co'
 ];
 
-var likeChain = sites.reduce(function(chain, site) {
+var statsChain = sites.reduce(function(chain, site) {
     var pause = 1000;
     return chain.then(function() {
-        return getSiteLikes(site)
+        return getSiteStats(site)
         .then(function (stats) {
             siteStats[site] = stats;
         }).
@@ -39,7 +39,7 @@ var likeChain = sites.reduce(function(chain, site) {
     });
 }, Promise.resolve());
 
-likeChain
+statsChain
 .then(function () {
     yaml = YAML.stringify(siteStats, 4);
     console.log(yaml);
