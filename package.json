@@ -1,0 +1,16 @@
+{
+  "name": "birdhouse",
+  "version": "1.0.0",
+  "description": "how to bluebird",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Venkat Venkataraju <venkat.venkataraju@yahoo.com> (https://github.com/outofjungle/)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.10.0",
+    "request": "^2.61.0",
+    "yamljs": "^0.2.3"
+  }
+}
